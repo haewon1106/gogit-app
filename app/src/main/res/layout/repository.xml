@@ -25,7 +25,7 @@
             android:layout_weight="1"/>
 
         <TextView
-            android:id="@+id/tvRemove"
+            android:id="@+id/repository_remove"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/error"

@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="haewon171"
             android:textStyle="bold"
-            android:textSize="18sp"
+            android:textSize="12sp"
             android:layout_marginRight="15dp"
             android:layout_marginLeft="10dp"
             />

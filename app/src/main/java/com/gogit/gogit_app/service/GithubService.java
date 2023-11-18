@@ -2,6 +2,7 @@ package com.gogit.gogit_app.service;
 
 import com.gogit.gogit_app.model.github.commit.RepoCommit;
 import com.gogit.gogit_app.model.github.issue.Issue;
+import com.gogit.gogit_app.model.github.org.Organization;
 import com.gogit.gogit_app.model.github.repo.SearchedRepo;
 import com.gogit.gogit_app.model.github.user.SearchedUser;
 import com.gogit.gogit_app.request.AddIssueRequest;
@@ -9,13 +10,17 @@ import com.gogit.gogit_app.request.AddRepositoryRequest;
 import com.gogit.gogit_app.model.github.user.GithubUser;
 import com.gogit.gogit_app.model.github.repo.Repository;
 
+import org.checkerframework.checker.units.qual.C;
+
 import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -79,5 +84,25 @@ public interface GithubService {
             @Body AddIssueRequest addIssueRequest
     );
 
+    @DELETE("/repos/{login}/{repo}")
+    Call<Object> deleteRepo(
+            @Header("Authorization") String auth,
+            @Path("login") String login,
+            @Path("repo") String repo
+    );
 
+    @PATCH("/repos/{login}/{repo}/issues/{number}")
+    Call<Map<String, Object>> closeIssue(
+            @Header("Authorization") String auth,
+            @Path("login") String login,
+            @Path("repo") String repo,
+            @Path("number") Long number,
+            @Body Map<String, String> state
+    );
+
+    @GET("/users/{login}/orgs")
+    Call<List<Organization>> getUsersOrgs(
+            @Header("Authorization") String auth,
+            @Path("login") String login
+    );
 }

@@ -4,14 +4,15 @@
     android:layout_width="300dp"
     android:layout_height="415dp"
     android:layout_gravity="center"
+    android:background="@drawable/btn_round"
     android:minWidth="300dp"
-    android:orientation="vertical"
-    android:background="@drawable/btn_round">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:padding="20dp">
+
         <TextView
             android:id="@+id/organization_popup"
             android:layout_width="wrap_content"
@@ -19,222 +20,21 @@
             android:gravity="left"
             android:minHeight="50dp"
             android:textSize="23sp"
-            tools:text="Organization/" />
-        <TextView
-            android:id="@+id/organization_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="left"
-            android:minHeight="50dp"
-            android:textSize="23sp"
-            android:textStyle="bold"
-            tools:text="Java" />
+            android:textColor="@color/black"
+            android:text="오가니제이션" />
 
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/gray400"
-        />
-    <ScrollView
+        android:background="@color/gray400" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/org_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:orientation="vertical"
-            >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp">
-                <ImageView
-                    android:id="@+id/user_profile1"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/git_logo"/>
-                <TextView
-                    android:id="@+id/user1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:gravity="left|center"
-                    android:text="haewon"
-                    android:textSize="18sp"
-                    android:layout_marginLeft="20dp"/>
-                <TextView
-                    android:id="@+id/user1_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:gravity="left|center"
-                    android:text="haewon1106"
-                    android:textColor="@color/gray900"
-                    android:textSize="12sp"
-                    android:layout_marginLeft="12dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp">
-                <ImageView
-                    android:id="@+id/user_profile2"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/git_logo"/>
-                <TextView
-                    android:id="@+id/user2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:gravity="left|center"
-                    android:text="haewon"
-                    android:textSize="18sp"
-                    android:layout_marginLeft="20dp"/>
-                <TextView
-                    android:id="@+id/user2_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:gravity="left|center"
-                    android:text="haewon1106"
-                    android:textColor="@color/gray900"
-                    android:textSize="12sp"
-                    android:layout_marginLeft="12dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp">
-                <ImageView
-                    android:id="@+id/user_profile3"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/git_logo"/>
-                <TextView
-                    android:id="@+id/user3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:gravity="left|center"
-                    android:text="haewon"
-                    android:textSize="18sp"
-                    android:layout_marginLeft="20dp"/>
-                <TextView
-                    android:id="@+id/user3_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:gravity="left|center"
-                    android:text="haewon1106"
-                    android:textColor="@color/gray900"
-                    android:textSize="12sp"
-                    android:layout_marginLeft="12dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp">
-                <ImageView
-                    android:id="@+id/user_profile4"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/git_logo"/>
-                <TextView
-                    android:id="@+id/user4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:gravity="left|center"
-                    android:text="haewon"
-                    android:textSize="18sp"
-                    android:layout_marginLeft="20dp"/>
-                <TextView
-                    android:id="@+id/user4_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:gravity="left|center"
-                    android:text="haewon1106"
-                    android:textColor="@color/gray900"
-                    android:textSize="12sp"
-                    android:layout_marginLeft="12dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp">
-                <ImageView
-                    android:id="@+id/user_profile5"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/git_logo"/>
-                <TextView
-                    android:id="@+id/user5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:gravity="left|center"
-                    android:text="haewon"
-                    android:textSize="18sp"
-                    android:layout_marginLeft="20dp"/>
-                <TextView
-                    android:id="@+id/user5_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:gravity="left|center"
-                    android:text="haewon1106"
-                    android:textColor="@color/gray900"
-                    android:textSize="12sp"
-                    android:layout_marginLeft="12dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp">
-                <ImageView
-                    android:id="@+id/user_profile6"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/git_logo"/>
-                <TextView
-                    android:id="@+id/user6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:gravity="left|center"
-                    android:text="haewon"
-                    android:textSize="18sp"
-                    android:layout_marginLeft="20dp"/>
-                <TextView
-                    android:id="@+id/user6_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:gravity="left|center"
-                    android:text="haewon1106"
-                    android:textColor="@color/gray900"
-                    android:textSize="12sp"
-                    android:layout_marginLeft="12dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="25dp">
-                <ImageView
-                    android:id="@+id/user_profile7"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/git_logo"/>
-                <TextView
-                    android:id="@+id/user7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:gravity="left|center"
-                    android:text="haewon"
-                    android:textSize="18sp"
-                    android:layout_marginLeft="20dp"/>
-                <TextView
-                    android:id="@+id/user7_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:gravity="left|center"
-                    android:text="haewon1106"
-                    android:textColor="@color/gray900"
-                    android:textSize="12sp"
-                    android:layout_marginLeft="12dp"/>
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+
+    </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

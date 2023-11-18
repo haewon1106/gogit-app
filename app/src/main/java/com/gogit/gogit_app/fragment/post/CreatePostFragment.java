@@ -1,9 +1,13 @@
 package com.gogit.gogit_app.fragment.post;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,6 +47,29 @@ public class CreatePostFragment extends Fragment {
         EditText contentEditText = view.findViewById(R.id.content_edittext);
         Button uploadButton = view.findViewById(R.id.upload_button);
 
+        contentEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // 텍스트 변경 전
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // 텍스트 변경 중
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // 텍스트 변경 후
+                if (s.toString().trim().length() != 0) {
+                    uploadButton.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
+                    uploadButton.setEnabled(true);
+                } else {
+                    uploadButton.setBackgroundTintList(ColorStateList.valueOf(Color.LTGRAY));
+                    uploadButton.setEnabled(false);
+                }
+            }
+        });
         // retrofit
         Retrofit retrofit = PostRetrofitClient.getRetrofitInstance();
         PostService postService = retrofit.create(PostService.class);

@@ -1,12 +1,17 @@
 package com.gogit.gogit_app.fragment.issue;
 
 import android.annotation.SuppressLint;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,6 +76,29 @@ public class IssuesFragment extends Fragment {
         uploadButton = view.findViewById(R.id.upload_button);
         issueTitleEditText = view.findViewById(R.id.issue_title_edittext);
 
+        issueTitleEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // 텍스트 변경 전
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // 텍스트 변경 중
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // 텍스트 변경 후
+                if (s.toString().trim().length() != 0) {
+                    uploadButton.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
+                    uploadButton.setEnabled(true);
+                } else {
+                    uploadButton.setBackgroundTintList(ColorStateList.valueOf(Color.LTGRAY));
+                    uploadButton.setEnabled(false);
+                }
+            }
+        });
         uploadButton.setOnClickListener(e -> {
             String title = issueTitleEditText.getText().toString();
             if (title.trim().length() == 0) {

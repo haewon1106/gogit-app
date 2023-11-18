@@ -11,11 +11,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.gogit.gogit_app.R;
 import com.gogit.gogit_app.adapter.CommitAdapter;
 import com.gogit.gogit_app.client.GithubRetrofitClient;
 import com.gogit.gogit_app.config.SessionManager;
+import com.gogit.gogit_app.fragment.modal.RepoDeleteModalFragment;
 import com.gogit.gogit_app.model.github.commit.RepoCommit;
 import com.gogit.gogit_app.service.GithubService;
 import com.gogit.gogit_app.util.MyToast;
@@ -32,6 +34,8 @@ public class RepoDetailFragment extends Fragment {
     private String repoName;
     private String login;
     private String token;
+    private Button repoDeleteButton;
+
     private Retrofit retrofit;
     private GithubService githubService;
     private RecyclerView commitRecyclerView;
@@ -61,21 +65,31 @@ public class RepoDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.repository_commit, container, false);
 
+        // 뷰
+        repoDeleteButton = view.findViewById(R.id.repository_delete_btn);
+
+        // 레트로핏, 서비스
         retrofit = GithubRetrofitClient.getRetrofitInstance();
         githubService = retrofit.create(GithubService.class);
 
+        // 세션매니저
         SessionManager sessionManager = new SessionManager(getContext());
         login = sessionManager.getUserId();
         token = sessionManager.getToken();
 
+        // 리사이클러 뷰
         commitRecyclerView = view.findViewById(R.id.commit_recyclerview);
         commitRecyclerView.setHasFixedSize(false);
         commitRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        // 커밋 목록
         showCommits(token, login, repoName);
 
-        Log.d("my tag", repoName);
-
+        //이벤트 리스너
+        repoDeleteButton.setOnClickListener(e -> {
+            RepoDeleteModalFragment repoDeleteModalFragment = RepoDeleteModalFragment.newInstance(repoName);
+            repoDeleteModalFragment.show(getActivity().getSupportFragmentManager(), "dialog");
+        });
         return view;
     }
 

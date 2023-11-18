@@ -38,7 +38,10 @@ public class CommitAdapter
         Commit commit = data.get(position).getCommit();
 
         TextView commitMessageTextView = view.findViewById(R.id.commit_message);
+        TextView commitUserNameTextView = view.findViewById(R.id.commit_item_user_name);
+
         commitMessageTextView.setText(commit.getMessage());
+        commitUserNameTextView.setText(commit.getAuthor().get("name"));
     }
 
     @Override

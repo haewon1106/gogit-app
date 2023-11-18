@@ -19,11 +19,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.gogit.gogit_app.R;
+import com.gogit.gogit_app.adapter.OrgsAdapter;
 import com.gogit.gogit_app.adapter.PostAdapter;
 import com.gogit.gogit_app.adapter.RepoAdapter;
 import com.gogit.gogit_app.client.GithubRetrofitClient;
 import com.gogit.gogit_app.client.PostRetrofitClient;
 import com.gogit.gogit_app.config.SessionManager;
+import com.gogit.gogit_app.fragment.modal.OrgModalFragment;
+import com.gogit.gogit_app.model.github.org.Organization;
 import com.gogit.gogit_app.model.github.user.GithubUser;
 import com.gogit.gogit_app.model.Post;
 import com.gogit.gogit_app.model.github.repo.Repository;
@@ -49,6 +52,7 @@ public class MyPageFragment extends Fragment {
     TextView usernameTextView;
     LinearLayout followerLayout;
     TextView orgCountTextView;
+    LinearLayout orgLayout;
     RecyclerView postsView;
     RecyclerView reposView;
     ImageButton repImageButton;
@@ -77,6 +81,7 @@ public class MyPageFragment extends Fragment {
         usernameTextView = view.findViewById(R.id.userName);
         followerLayout = view.findViewById(R.id.follower_layout);
         orgCountTextView = view.findViewById(R.id.account_organization);
+        orgLayout = view.findViewById(R.id.org_view);
         repImageButton = view.findViewById(R.id.rep_image_button);
         postImageButton = view.findViewById(R.id.post_image_button);
         reposView = view.findViewById(R.id.repo_recyclerview);
@@ -87,6 +92,11 @@ public class MyPageFragment extends Fragment {
             FragmentHelper.replaceFragment(getActivity().getSupportFragmentManager(),
                     R.id.containers,
                     new FollowerFragment());
+        });
+
+        orgLayout.setOnClickListener(e -> {
+            OrgModalFragment orgModalFragment = new OrgModalFragment();
+            orgModalFragment.show(getActivity().getSupportFragmentManager(), "dialog");
         });
 
         repImageButton.setOnClickListener(e -> {
@@ -121,6 +131,7 @@ public class MyPageFragment extends Fragment {
         loadAndSetUserInfo(token, login);
         loadAndSetPosts(pk);
         loadAndSetRepos(token, login);
+        setUsersOrgsCount(token, login);
 
         return view;
     }
@@ -165,8 +176,29 @@ public class MyPageFragment extends Fragment {
                 .into(profileImageView);
         repoTextview.setText((user.getPublic_repos() + user.getTotal_private_repos()) + "");
         followerTextView.setText(user.getFollowers() + "");
-        // TODO: 오가니제이션 어떻게 해야할지 고민해보기
-        orgCountTextView.setText("3");
+    }
+
+    private void setUsersOrgsCount(String token, String login) {
+        Retrofit githubRetrofit = GithubRetrofitClient.getRetrofitInstance();
+        GithubService githubService = githubRetrofit.create(GithubService.class);
+        Call<List<Organization>> call = githubService.getUsersOrgs(
+                "Bearer " + token, login
+        );
+
+        call.enqueue(new Callback<List<Organization>>() {
+            @Override
+            public void onResponse(Call<List<Organization>> call, Response<List<Organization>> response) {
+                List<Organization> orgs = response.body();
+                if (orgs != null) {
+                    orgCountTextView.setText(orgs.size() + "");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Organization>> call, Throwable t) {
+                MyToast.showNetworkErrorToast(getContext());
+            }
+        });
     }
 
     private void loadAndSetPosts(Long pk) {

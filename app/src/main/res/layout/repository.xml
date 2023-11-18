@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-
-<data>
-    <variable
-        name="title"
-        type="String" />
-</data>
-
-<FrameLayout
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -21,18 +13,18 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#eeeeee"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:background="#eeeeee" />
 
         <TextView
             android:id="@+id/repository_remove"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="3"
             android:background="@color/error"
-            android:text="삭제"
-            android:textColor="@color/white"
             android:gravity="center"
-            android:layout_weight="3"/>
+            android:text="삭제"
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
@@ -44,83 +36,93 @@
         android:padding="15dp">
 
         <ImageView
+            android:id="@+id/profile"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:id="@+id/profile"
-            android:layout_marginRight="15dp"/>
+            android:layout_marginRight="15dp" />
+
         <TextView
-            android:layout_toRightOf="@+id/profile"
             android:id="@+id/user_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@+id/profile"
             android:text="hyeg0121"
             android:textSize="18dp"
-            android:layout_marginRight="5dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:layout_below="@+id/user_id"
             android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/profile"
-            android:layout_below="@+id/user_id">
+            android:layout_toRightOf="@+id/profile">
+
             <View
                 android:layout_width="1dp"
                 android:layout_height="wrap_content"
-                android:background="@color/gray400"
                 android:layout_marginRight="10dp"
-                />
+                android:background="@color/gray400" />
+
             <TextView
+                android:id="@+id/repository_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:text="hyeg0121/hyeg0121"
-                android:textSize="16dp"
                 android:textColor="@color/blue"
-                android:id="@+id/repository_name"/>
+                android:textSize="16dp" />
+
             <RelativeLayout
+                android:id="@+id/container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="15dp"
+                android:layout_below="@id/repository_name"
                 android:layout_centerVertical="true"
-                android:id="@+id/container"
-                android:layout_below="@id/repository_name">
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp">
+
                 <LinearLayout
+                    android:id="@+id/language_container"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:id="@+id/language_container">
+                    android:gravity="center_vertical">
+
                     <ImageView
+                        android:id="@+id/language_color"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
                         android:background="@drawable/circle"
-                        android:backgroundTint="@color/black"
-                        android:id="@+id/language_color"/>
+                        android:backgroundTint="@color/black" />
+
                     <TextView
+                        android:id="@+id/language_type"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:id="@+id/language_type"
-                        android:text="HTML"/>
+                        android:text="HTML" />
                 </LinearLayout>
+
                 <LinearLayout
-                    android:layout_toRightOf="@+id/language_container"
-                    android:layout_marginLeft="20dp"
+                    android:id="@+id/forked_container"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/forked_container"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/language_container"
                     android:gravity="center_vertical">
+
                     <ImageView
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:backgroundTint="@color/gray900"
-                        android:background="@drawable/forked"/>
+                        android:background="@drawable/forked"
+                        android:backgroundTint="@color/gray900" />
+
                     <TextView
+                        android:id="@+id/account_forked"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5"
                         android:layout_marginLeft="5dp"
-                        android:id="@+id/account_forked"/>
+                        android:text="5" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -155,7 +157,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/gray900"
-        android:layout_gravity="bottom"/>
+        android:layout_gravity="bottom"
+        android:background="@color/gray900" />
 </FrameLayout>
-</layout>

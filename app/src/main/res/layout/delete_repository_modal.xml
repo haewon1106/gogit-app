@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@android:color/transparent"
     android:gravity="center">
     <LinearLayout
         android:layout_width="380dp"
@@ -53,7 +54,7 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="18dp"
-                android:text="haewon/gogit"/>
+                android:hint="haewon/gogit"/>
         </LinearLayout>
 
         <EditText
@@ -69,7 +70,8 @@
             android:textColorHint="#23FFFFFF"
             android:background="@drawable/exdittext_error"/>
 
-        <android.widget.Button
+        <Button
+            android:id="@+id/repo_delete_button"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginLeft="20dp"

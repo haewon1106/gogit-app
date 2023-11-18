@@ -40,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true">
                 <RadioGroup
+                    android:id="@+id/radio_group"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -52,6 +53,7 @@
                         android:id="@+id/lock_false"
                         android:layout_width="wrap_content"
                         android:layout_height="25dp"
+                        android:checked="true"
                         android:drawableRight="@drawable/lock_open_size"
                         android:layout_marginLeft="10dp"/>
                 </RadioGroup>

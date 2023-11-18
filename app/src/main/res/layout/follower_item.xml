@@ -33,13 +33,13 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <Button
-        android:layout_width="90dp"
-        android:layout_height="40dp"
-        android:gravity="center"
-        android:layout_gravity="right"
-        android:text="팔로잉"
-        android:textColor="@color/gray900"
-        android:background="@drawable/search_style"
-        />
+<!--    <Button-->
+<!--        android:layout_width="90dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:gravity="center"-->
+<!--        android:layout_gravity="right"-->
+<!--        android:text="팔로잉"-->
+<!--        android:textColor="@color/gray900"-->
+<!--        android:background="@drawable/search_style"-->
+<!--        />-->
 </LinearLayout>

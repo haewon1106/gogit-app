@@ -6,8 +6,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.gogit.gogit_app.R;
 import com.gogit.gogit_app.client.MemberRetrofitClient;
@@ -45,6 +47,7 @@ public class TokenActivity extends AppCompatActivity {
         // 뷰 가져오기
         Button submitButton = findViewById(R.id.submit_button);
         EditText toeknEditText = findViewById(R.id.token_editText);
+        TextView errorTextView = findViewById(R.id.token_not_found);
 
         // 확인 버튼을 눌렀을 때 이벤트
         submitButton.setOnClickListener(e -> {
@@ -52,6 +55,7 @@ public class TokenActivity extends AppCompatActivity {
 
             // 토큰을 입력하지 않았을 때
             if (token == null || token.length() == 0) {
+                errorTextView.setVisibility(View.VISIBLE);
                 MyToast.showToast(getApplicationContext(), "토큰을 입력해주세요.");
                 return;
             }
@@ -71,6 +75,7 @@ public class TokenActivity extends AppCompatActivity {
                 MyToast.showToast(getApplicationContext(), "유저 이름과 토큰이 없습니다.");
                 return;
             }
+
 
             // 리퀘스트 생성
             MemberSignInRequest memberSignInRequest = new MemberSignInRequest(

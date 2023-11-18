@@ -47,6 +47,7 @@ public class PostDetailFragment extends Fragment {
     ImageView writerProfileImageView;
     TextView writerIdTextView;
     TextView postContentTextView;
+    TextView commentCountTextView;
     RecyclerView commentRecyclerView;
     EditText commentWriteEditText;
 
@@ -84,6 +85,7 @@ public class PostDetailFragment extends Fragment {
         writerProfileImageView = view.findViewById(R.id.profileImg);
         writerIdTextView = view.findViewById(R.id.userId);
         postContentTextView = view.findViewById(R.id.write);
+        commentCountTextView = view.findViewById(R.id.comment_count);
 
         commentRecyclerView = view.findViewById(R.id.comment_recyclerview);
         commentRecyclerView.setHasFixedSize(false);
@@ -157,7 +159,7 @@ public class PostDetailFragment extends Fragment {
                 } else {
                     List<Comment> comments = response.body();
                     if (comments != null) {
-                        Log.d("my tag", comments.toString());
+                        commentCountTextView.setText(comments.size() + "");
                         commentRecyclerView.setAdapter(new CommentAdapter(comments));
                     }
                 }

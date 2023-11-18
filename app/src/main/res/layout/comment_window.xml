@@ -72,19 +72,6 @@
                     android:textColor="@color/gray900"
                     android:text="6"
                     android:id="@+id/comment_count"/>
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_marginRight="5dp"
-                    android:backgroundTint="@color/gray900"
-                    android:background="@drawable/baseline_favorite_border_24"
-                    android:id="@+id/heart"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gray900"
-                    android:text="12"
-                    android:id="@+id/heart_count"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

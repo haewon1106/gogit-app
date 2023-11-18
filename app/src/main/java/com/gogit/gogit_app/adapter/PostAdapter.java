@@ -47,8 +47,6 @@ public class PostAdapter
         ImageView profileImageView = view.findViewById(R.id.profileImg);
         TextView userIdTextView = view.findViewById(R.id.userId);
         TextView contentTextView = view.findViewById(R.id.write);
-        TextView commentCount = view.findViewById(R.id.comment_count);
-        TextView likeCount = view.findViewById(R.id.heart_count);
 
         // 데이터
         Post post = data.get(position);
@@ -66,7 +64,6 @@ public class PostAdapter
             Log.d("my tag", post.toString());
         }
         contentTextView.setText(post.getContent());
-        commentCount.setText(post.getCommentCount()+ "");
 
         view.setOnClickListener(e -> {
             FragmentHelper.replaceFragment(

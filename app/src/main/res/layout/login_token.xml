@@ -46,6 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="유요하지 않은 토큰입니다"
+        android:visibility="gone"
         android:layout_marginTop="2dp"
         android:textSize="13dp"
         android:textColor="@color/error"

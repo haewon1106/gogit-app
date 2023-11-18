@@ -2,81 +2,50 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="25dp"
     android:background="@drawable/button_underline"
-    >
+    android:padding="25dp">
 
     <!--    tools:showIn="layout/fragment_user"-->
     <ImageView
+        android:id="@+id/profileImg"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginRight="12dp"
-        android:id="@+id/profileImg"
-        />
+        android:layout_marginRight="12dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/userId"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="haewon"
             android:layout_marginBottom="10dp"
+            android:text="haewon"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:id="@+id/userId"/>
+            android:textStyle="bold" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical">
+
             <View
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@color/gray400"
                 android:layout_marginRight="10dp"
-                />
+                android:background="@color/gray400" />
+
             <TextView
+                android:id="@+id/write"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="여러분 ㅜㅠ 저좀 도와주세요 ㅠㅠ 지금 android studio로 프로젝트를 하나 진행 하고 있는데 push를 하다가 충돌이 나버려서요 ㅠㅠ 어떻게 해야하나요? "
-                android:gravity="center_vertical"
                 android:layout_marginRight="15dp"
-                android:textSize="14sp"
-                android:id="@+id/write"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="@color/gray900"
-                android:background="@drawable/baseline_chat_bubble_outline_24"
-                android:id="@+id/comment"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:textColor="@color/gray900"
-                android:text="6"
-                android:id="@+id/comment_count"/>
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginRight="5dp"
-                android:backgroundTint="@color/gray900"
-                android:background="@drawable/baseline_favorite_border_24"
-                android:id="@+id/heart"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/gray900"
-                android:text="12"
-                android:id="@+id/heart_count"/>
+                android:gravity="center_vertical"
+                android:text="여러분 ㅜㅠ 저좀 도와주세요 ㅠㅠ 지금 android studio로 프로젝트를 하나 진행 하고 있는데 push를 하다가 충돌이 나버려서요 ㅠㅠ 어떻게 해야하나요? "
+                android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

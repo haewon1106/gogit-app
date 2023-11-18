@@ -27,20 +27,20 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/gray900"/>
+        android:background="@color/gray900"/>앰
 
-    <EditText
-        android:id="@+id/search"
-        android:layout_width="370dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/search_style"
-        android:paddingLeft="15dp"
-        android:drawableLeft="@drawable/baseline_search_24"
-        android:drawableTint="@color/gray900"
-        android:drawablePadding="10dp"
-        android:hint="검색" />
+<!--    <EditText-->
+<!--        android:id="@+id/search"-->
+<!--        android:layout_width="370dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:background="@drawable/search_style"-->
+<!--        android:paddingLeft="15dp"-->
+<!--        android:drawableLeft="@drawable/baseline_search_24"-->
+<!--        android:drawableTint="@color/gray900"-->
+<!--        android:drawablePadding="10dp"-->
+<!--        android:hint="검색" />-->
 
     <ScrollView
         android:layout_width="match_parent"

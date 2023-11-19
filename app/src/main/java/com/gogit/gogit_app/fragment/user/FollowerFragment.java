@@ -18,7 +18,7 @@ import com.gogit.gogit_app.R;
 import com.gogit.gogit_app.adapter.FollowerAdapter;
 import com.gogit.gogit_app.client.GithubRetrofitClient;
 import com.gogit.gogit_app.config.Config;
-import com.gogit.gogit_app.config.SessionManager;
+import com.gogit.gogit_app.util.SessionManager;
 import com.gogit.gogit_app.model.github.user.GithubUser;
 import com.gogit.gogit_app.service.GithubService;
 

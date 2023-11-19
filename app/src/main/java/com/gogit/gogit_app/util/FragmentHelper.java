@@ -6,13 +6,15 @@ import androidx.fragment.app.FragmentTransaction;
 
 
 public class FragmentHelper {
-    public static void replaceFragment(FragmentManager fragmentManager,
+    public static boolean replaceFragment(FragmentManager fragmentManager,
                                        int containerId,
                                        Fragment fragment) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(containerId, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+
+        return true;
     }
 
 }

@@ -3,7 +3,6 @@ package com.gogit.gogit_app.fragment.modal;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,11 +13,11 @@ import android.widget.TextView;
 
 import com.gogit.gogit_app.R;
 import com.gogit.gogit_app.client.GithubRetrofitClient;
-import com.gogit.gogit_app.config.SessionManager;
+import com.gogit.gogit_app.util.SessionManager;
 import com.gogit.gogit_app.fragment.user.MyPageFragment;
 import com.gogit.gogit_app.service.GithubService;
 import com.gogit.gogit_app.util.FragmentHelper;
-import com.gogit.gogit_app.util.MyToast;
+import com.gogit.gogit_app.util.ToastHelper;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -96,7 +95,7 @@ public class RepoDeleteModalFragment extends DialogFragment {
             if (input.equals(repoNameTextView.getText())) {
                 deleteRepository(token, login, repoName);
             } else {
-                MyToast.showToast(getContext(), "이름이 알맞지 않습니다.");
+                ToastHelper.showToast(getContext(), "이름이 알맞지 않습니다.");
                 repoNameEditText.setText("");
             }
         });
@@ -111,14 +110,14 @@ public class RepoDeleteModalFragment extends DialogFragment {
         call.enqueue(new Callback<Object>() {
             @Override
             public void onResponse(Call<Object> call, Response<Object> response) {
-                MyToast.showToast(getContext(), "리포지토리가 삭제되었습니다.");
+                ToastHelper.showToast(getContext(), "리포지토리가 삭제되었습니다.");
                 FragmentHelper.replaceFragment(getActivity().getSupportFragmentManager(), R.id.containers, new MyPageFragment());
                 dismiss();
             }
 
             @Override
             public void onFailure(Call<Object> call, Throwable t) {
-                MyToast.showNetworkErrorToast(getContext());
+                ToastHelper.showNetworkErrorToast(getContext());
             }
         });
 

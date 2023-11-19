@@ -2,7 +2,6 @@ package com.gogit.gogit_app.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,12 +12,17 @@ import android.widget.TextView;
 
 import com.gogit.gogit_app.R;
 import com.gogit.gogit_app.client.MemberRetrofitClient;
-import com.gogit.gogit_app.config.Config;
-import com.gogit.gogit_app.config.SessionManager;
+import com.gogit.gogit_app.util.CheckApiValidityTask;
+import com.gogit.gogit_app.util.SessionManager;
 import com.gogit.gogit_app.model.Member;
 import com.gogit.gogit_app.request.MemberSignInRequest;
 import com.gogit.gogit_app.service.MemberService;
-import com.gogit.gogit_app.util.MyToast;
+import com.gogit.gogit_app.util.ToastHelper;
+
+import org.kohsuke.github.GitHub;
+import org.kohsuke.github.GitHubBuilder;
+
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,7 +30,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class TokenActivity extends AppCompatActivity {
-    @SuppressLint("CheckResult")
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_token);
@@ -42,40 +46,39 @@ public class TokenActivity extends AppCompatActivity {
 
         // 레트로핏과 서비스 인스턴스
         Retrofit retrofit = MemberRetrofitClient.getRetrofitInstance();
-        MemberService  memberService = retrofit.create(MemberService.class);
+        MemberService memberService = retrofit.create(MemberService.class);
 
         // 뷰 가져오기
         Button submitButton = findViewById(R.id.submit_button);
-        EditText toeknEditText = findViewById(R.id.token_editText);
+        EditText tokenEditText = findViewById(R.id.token_editText);
         TextView errorTextView = findViewById(R.id.token_not_found);
 
         // 확인 버튼을 눌렀을 때 이벤트
         submitButton.setOnClickListener(e -> {
-            String token = toeknEditText.getText().toString();
+            String token = tokenEditText.getText().toString();
 
             // 토큰을 입력하지 않았을 때
             if (token == null || token.length() == 0) {
                 errorTextView.setVisibility(View.VISIBLE);
-                MyToast.showToast(getApplicationContext(), "토큰을 입력해주세요.");
+                ToastHelper.showToast(getApplicationContext(), "토큰을 입력해주세요.");
                 return;
             }
 
-            // 세션 스토라지에 저장
+            // 토큰이 유효한지 검사
+            new CheckApiValidityTask(token, this).execute();
+
+
+            // 세션 스토리지에 저장
             sessionManager.saveLoginDetails(
                     getIntent().getStringExtra(SessionManager.KEY_USERID),
                     token.trim()
             );
 
-            Log.d("my tag", sessionManager.getToken());
-
-            Log.d("my tag", sessionManager.getUserId());
-            Log.d("my tag", sessionManager.getToken());
             // sharedPreferences의 로그인 정보가 null일 때
             if (sessionManager.getUserId() == null || sessionManager.getToken() == null) {
-                MyToast.showToast(getApplicationContext(), "유저 이름과 토큰이 없습니다.");
+                ToastHelper.showToast(getApplicationContext(), "유저 이름과 토큰이 없습니다.");
                 return;
             }
-
 
             // 리퀘스트 생성
             MemberSignInRequest memberSignInRequest = new MemberSignInRequest(
@@ -84,9 +87,6 @@ public class TokenActivity extends AppCompatActivity {
                     getIntent().getStringExtra("avatar_url"),
                     getIntent().getStringExtra("html_url")
             );
-
-            Log.d("my tag", memberSignInRequest.toString());
-
 
             // api 요청
             Call<Member> call = memberService.createMember(memberSignInRequest);
@@ -109,10 +109,9 @@ public class TokenActivity extends AppCompatActivity {
                 @Override
                 public void onFailure(Call<Member> call, Throwable t) {
                     Log.d("my tag", "onFailure: " + t.getMessage());
-                    MyToast.showToast(getApplicationContext(), "네트워크 에러 발생");
+                    ToastHelper.showToast(getApplicationContext(), "네트워크 에러 발생");
                 }
             });
-
 
 
         });

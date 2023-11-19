@@ -1,4 +1,4 @@
-package com.gogit.gogit_app.config;
+package com.gogit.gogit_app.util;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

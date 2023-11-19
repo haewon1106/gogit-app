@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gogit.gogit_app.R;
 import com.gogit.gogit_app.client.GithubRetrofitClient;
-import com.gogit.gogit_app.config.SessionManager;
+import com.gogit.gogit_app.util.SessionManager;
 import com.gogit.gogit_app.model.github.issue.Issue;
 import com.gogit.gogit_app.service.GithubService;
-import com.gogit.gogit_app.util.MyToast;
+import com.gogit.gogit_app.util.ToastHelper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -77,13 +77,13 @@ public class IssueAdapter
             call.enqueue(new Callback<Map<String, Object>>() {
                 @Override
                 public void onResponse(Call<Map<String, Object>> call, Response<Map<String, Object>> response) {
-                    MyToast.showToast(view.getContext(), "이슈가 close 되었습니다.");
+                    ToastHelper.showToast(view.getContext(), "이슈가 close 되었습니다.");
 
                 }
 
                 @Override
                 public void onFailure(Call<Map<String, Object>> call, Throwable t) {
-                    MyToast.showNetworkErrorToast(view.getContext());
+                    ToastHelper.showNetworkErrorToast(view.getContext());
                 }
             });
         });

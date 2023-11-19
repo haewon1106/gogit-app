@@ -15,11 +15,11 @@ import com.gogit.gogit_app.R;
 import com.gogit.gogit_app.adapter.SearchRepoAdapter;
 import com.gogit.gogit_app.adapter.SearchUserAdapter;
 import com.gogit.gogit_app.client.GithubRetrofitClient;
-import com.gogit.gogit_app.config.SessionManager;
+import com.gogit.gogit_app.util.SessionManager;
 import com.gogit.gogit_app.model.github.repo.SearchedRepo;
 import com.gogit.gogit_app.model.github.user.SearchedUser;
 import com.gogit.gogit_app.service.GithubService;
-import com.gogit.gogit_app.util.MyToast;
+import com.gogit.gogit_app.util.ToastHelper;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -97,14 +97,14 @@ public class SearchResultFragment extends Fragment {
                 if (searchedUser != null) {
                     userSearchView.setAdapter(new SearchUserAdapter(searchedUser.getItems()));
                 } else {
-                    MyToast.showToast(getContext(), "유저를 찾을 수 없습니다.");
+                    ToastHelper.showToast(getContext(), "유저를 찾을 수 없습니다.");
                 }
 
             }
 
             @Override
             public void onFailure(Call<SearchedUser> call, Throwable t) {
-                MyToast.showNetworkErrorToast(getContext());
+                ToastHelper.showNetworkErrorToast(getContext());
             }
         });
     }
@@ -126,13 +126,13 @@ public class SearchResultFragment extends Fragment {
                 if (searchedRepo != null) {
                     repoSearchView.setAdapter(new SearchRepoAdapter(searchedRepo.getItems()));
                 } else {
-                    MyToast.showToast(getContext(), "유저를 찾을 수 없습니다.");
+                    ToastHelper.showToast(getContext(), "유저를 찾을 수 없습니다.");
                 }
             }
 
             @Override
             public void onFailure(Call<SearchedRepo> call, Throwable t) {
-                MyToast.showNetworkErrorToast(getContext());
+                ToastHelper.showNetworkErrorToast(getContext());
             }
         });
     }

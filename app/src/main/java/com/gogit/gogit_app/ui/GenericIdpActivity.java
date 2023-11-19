@@ -9,8 +9,8 @@ import android.util.Log;
 
 import com.gogit.gogit_app.R;
 import com.gogit.gogit_app.config.Config;
-import com.gogit.gogit_app.config.NetworkUtils;
-import com.gogit.gogit_app.config.SessionManager;
+import com.gogit.gogit_app.util.NetworkUtils;
+import com.gogit.gogit_app.util.SessionManager;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;

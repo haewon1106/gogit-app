@@ -8,23 +8,21 @@ import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.gogit.gogit_app.R;
 import com.gogit.gogit_app.client.GithubRetrofitClient;
-import com.gogit.gogit_app.config.SessionManager;
+import com.gogit.gogit_app.util.SessionManager;
 import com.gogit.gogit_app.fragment.user.MyPageFragment;
 import com.gogit.gogit_app.request.AddRepositoryRequest;
 import com.gogit.gogit_app.service.GithubService;
 import com.gogit.gogit_app.util.FragmentHelper;
-import com.gogit.gogit_app.util.MyToast;
+import com.gogit.gogit_app.util.ToastHelper;
 
 
 import java.util.Map;
@@ -110,7 +108,7 @@ public class CreateRepoFragment extends Fragment {
             String description = descEditText.getText().toString();
 
             if (name.length() == 0 || description.length() == 0) {
-                MyToast.showToast(getContext(), "빈 칸이 있습니다.");
+                ToastHelper.showToast(getContext(), "빈 칸이 있습니다.");
                 return;
             }
 
@@ -136,13 +134,13 @@ public class CreateRepoFragment extends Fragment {
             @Override
             public void onResponse(Call<Map<String, Object>> call, Response<Map<String, Object>> response) {
                 // TODO: 리포지토리 목록 나열할 페이지 만들기
-                MyToast.showToast(getContext(), "리포지토리가 추가되었습니다.");
+                ToastHelper.showToast(getContext(), "리포지토리가 추가되었습니다.");
                 FragmentHelper.replaceFragment(getFragmentManager(), R.id.containers, new MyPageFragment());
             }
 
             @Override
             public void onFailure(Call<Map<String, Object>> call, Throwable t) {
-                MyToast.showToast(getContext(), "네트워크가 불안정합니다.");
+                ToastHelper.showToast(getContext(), "네트워크가 불안정합니다.");
             }
         });
     }

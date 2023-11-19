@@ -3,7 +3,6 @@ package com.gogit.gogit_app.fragment.issue;
 import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -25,12 +24,12 @@ import android.widget.Spinner;
 import com.gogit.gogit_app.R;
 import com.gogit.gogit_app.adapter.IssueAdapter;
 import com.gogit.gogit_app.client.GithubRetrofitClient;
-import com.gogit.gogit_app.config.SessionManager;
+import com.gogit.gogit_app.util.SessionManager;
 import com.gogit.gogit_app.model.github.issue.Issue;
 import com.gogit.gogit_app.model.github.repo.Repository;
 import com.gogit.gogit_app.request.AddIssueRequest;
 import com.gogit.gogit_app.service.GithubService;
-import com.gogit.gogit_app.util.MyToast;
+import com.gogit.gogit_app.util.ToastHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,7 +101,7 @@ public class IssuesFragment extends Fragment {
         uploadButton.setOnClickListener(e -> {
             String title = issueTitleEditText.getText().toString();
             if (title.trim().length() == 0) {
-                MyToast.showToast(getContext(), "이슈 제목을 입력해주세요.");
+                ToastHelper.showToast(getContext(), "이슈 제목을 입력해주세요.");
                 return;
             }
 
@@ -123,13 +122,13 @@ public class IssuesFragment extends Fragment {
                 if (issues != null) {
                     issuesRecyclerView.setAdapter(new IssueAdapter(issues));
                 } else {
-                    MyToast.showToast(getContext(), "이슈가 존재하지 않습니다.");
+                    ToastHelper.showToast(getContext(), "이슈가 존재하지 않습니다.");
                 }
             }
 
             @Override
             public void onFailure(Call<List<Issue>> call, Throwable t) {
-                MyToast.showNetworkErrorToast(getContext());
+                ToastHelper.showNetworkErrorToast(getContext());
             }
         });
     }
@@ -161,17 +160,17 @@ public class IssuesFragment extends Fragment {
 
                         @Override
                         public void onNothingSelected(AdapterView<?> parentView) {
-                            MyToast.showToast(getContext(), "리포지토리가 선택되지 않았습니다.");
+                            ToastHelper.showToast(getContext(), "리포지토리가 선택되지 않았습니다.");
                         }
                     });
                 } else {
-                    MyToast.showNetworkErrorToast(getContext());
+                    ToastHelper.showNetworkErrorToast(getContext());
                 }
             }
 
             @Override
             public void onFailure(Call<List<Repository>> call, Throwable t) {
-                MyToast.showNetworkErrorToast(getContext());
+                ToastHelper.showNetworkErrorToast(getContext());
             }
         });
 
@@ -193,18 +192,18 @@ public class IssuesFragment extends Fragment {
             public void onResponse(Call<Issue> call, Response<Issue> response) {
 
                 if (response.isSuccessful()) {
-                    MyToast.showToast(getContext(), "이슈가 추가되었습니다.");
+                    ToastHelper.showToast(getContext(), "이슈가 추가되었습니다.");
                     issueTitleEditText.setText("");
                     showIssues(token);
 
                 } else {
-                    MyToast.showToast(getContext(), "이슈 추가를 실패했습니다.");
+                    ToastHelper.showToast(getContext(), "이슈 추가를 실패했습니다.");
                 }
             }
 
             @Override
             public void onFailure(Call<Issue> call, Throwable t) {
-                MyToast.showNetworkErrorToast(getContext());
+                ToastHelper.showNetworkErrorToast(getContext());
             }
         });
     }

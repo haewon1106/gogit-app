@@ -17,12 +17,12 @@ import android.widget.EditText;
 
 import com.gogit.gogit_app.R;
 import com.gogit.gogit_app.client.PostRetrofitClient;
-import com.gogit.gogit_app.config.SessionManager;
+import com.gogit.gogit_app.util.SessionManager;
 import com.gogit.gogit_app.fragment.main.HomeFragment;
 import com.gogit.gogit_app.request.AddPostRequest;
 import com.gogit.gogit_app.service.PostService;
 import com.gogit.gogit_app.util.FragmentHelper;
-import com.gogit.gogit_app.util.MyToast;
+import com.gogit.gogit_app.util.ToastHelper;
 
 import java.util.Map;
 
@@ -100,7 +100,7 @@ public class CreatePostFragment extends Fragment {
                 @Override
                 public void onFailure(Call<Map<String, Object>> call, Throwable t) {
                     Log.d("my tag", "onFailure: " + t.getMessage());
-                    MyToast.showToast(getContext(), "네트워크 에러 발생");
+                    ToastHelper.showToast(getContext(), "네트워크 에러 발생");
                 }
             });
 

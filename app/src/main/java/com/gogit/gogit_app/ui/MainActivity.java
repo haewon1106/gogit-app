@@ -15,6 +15,7 @@ import com.gogit.gogit_app.fragment.main.HomeFragment;
 import com.gogit.gogit_app.fragment.issue.IssuesFragment;
 import com.gogit.gogit_app.fragment.user.MyPageFragment;
 import com.gogit.gogit_app.fragment.repo.PostAndRepositoryFragment;
+import com.gogit.gogit_app.util.FragmentHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -31,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
         fragmentContainer = findViewById(R.id.containers);
 
-        // default fragment
-        Fragment defaultFragment = new HomeFragment();
-        loadFragment(defaultFragment);
+        FragmentHelper.replaceFragment(
+                getSupportFragmentManager(), R.id.containers, new HomeFragment()
+        );
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
         bottomNavigationView.setOnItemSelectedListener(new ItemSelectedListener());
@@ -54,18 +55,8 @@ public class MainActivity extends AppCompatActivity {
             } else if (item.getItemId() == R.id.myPage) {
                 selectedFragment = new MyPageFragment();
             }
-            return loadFragment(selectedFragment);
+            return FragmentHelper.replaceFragment(getSupportFragmentManager(), R.id.containers, selectedFragment);
         }
     }
 
-    private boolean loadFragment(Fragment fragment) {
-        if (fragment != null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.containers, fragment);
-            transaction.addToBackStack(null);
-            transaction.commit();
-            return true;
-        }
-        return false;
-    }
 }

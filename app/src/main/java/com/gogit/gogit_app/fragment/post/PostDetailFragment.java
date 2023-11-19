@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,12 +18,12 @@ import com.bumptech.glide.request.RequestOptions;
 import com.gogit.gogit_app.R;
 import com.gogit.gogit_app.adapter.CommentAdapter;
 import com.gogit.gogit_app.client.PostRetrofitClient;
-import com.gogit.gogit_app.config.SessionManager;
+import com.gogit.gogit_app.util.SessionManager;
 import com.gogit.gogit_app.model.Comment;
 import com.gogit.gogit_app.model.Post;
 import com.gogit.gogit_app.request.AddCommentRequest;
 import com.gogit.gogit_app.service.PostService;
-import com.gogit.gogit_app.util.MyToast;
+import com.gogit.gogit_app.util.ToastHelper;
 
 import java.util.List;
 import java.util.Map;
@@ -97,7 +96,7 @@ public class PostDetailFragment extends Fragment {
 
             // 아무것도 검색하지 않았을 때 처리
             if (content.length() == 0) {
-                MyToast.showToast(getContext(), "댓글을 입력하세요.");
+                ToastHelper.showToast(getContext(), "댓글을 입력하세요.");
                 return false;
             }
 
@@ -121,9 +120,9 @@ public class PostDetailFragment extends Fragment {
             @Override
             public void onResponse(Call<Post> call, Response<Post> response) {
                 if (response.code() == 404) {
-                    MyToast.showToast(getContext(), "글을 찾을 수 없습니다");
+                    ToastHelper.showToast(getContext(), "글을 찾을 수 없습니다");
                 } else if (response.code() == 400) {
-                    MyToast.showToast(getContext(), "글을 조회 중 에러가 발생했습니다.");
+                    ToastHelper.showToast(getContext(), "글을 조회 중 에러가 발생했습니다.");
                 } else {
                     Post post = response.body();
                     if (post != null) {
@@ -142,7 +141,7 @@ public class PostDetailFragment extends Fragment {
 
             @Override
             public void onFailure(Call<Post> call, Throwable t) {
-                MyToast.showToast(getContext(), "네트워크가 불안정합니다.");
+                ToastHelper.showToast(getContext(), "네트워크가 불안정합니다.");
             }
         });
     }
@@ -155,7 +154,7 @@ public class PostDetailFragment extends Fragment {
                 if (response.code() == 404) {
                     // 댓글이 없을 때
                 } else if (response.code() == 400) {
-                    MyToast.showToast(getContext(), "댓글 조회 중 에러가 발생했습니다.");
+                    ToastHelper.showToast(getContext(), "댓글 조회 중 에러가 발생했습니다.");
                 } else {
                     List<Comment> comments = response.body();
                     if (comments != null) {
@@ -167,7 +166,7 @@ public class PostDetailFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Comment>> call, Throwable t) {
-                MyToast.showToast(getContext(), "네트워크가 불안정합니다.");
+                ToastHelper.showToast(getContext(), "네트워크가 불안정합니다.");
             }
         });
     }
@@ -178,17 +177,17 @@ public class PostDetailFragment extends Fragment {
             @Override
             public void onResponse(Call<Map<String, String>> call, Response<Map<String, String>> response) {
                 if (response.isSuccessful()) {
-                    MyToast.showToast(getContext(), "댓글이 성공적으로 추가되었습니다.");
+                    ToastHelper.showToast(getContext(), "댓글이 성공적으로 추가되었습니다.");
                     commentWriteEditText.setText("");
                     showComments(postId);
                 } else {
-                    MyToast.showToast(getContext(), "댓글 추가를 실패했습니다.");
+                    ToastHelper.showToast(getContext(), "댓글 추가를 실패했습니다.");
                 }
             }
 
             @Override
             public void onFailure(Call<Map<String, String>> call, Throwable t) {
-                MyToast.showNetworkErrorToast(getContext());
+                ToastHelper.showNetworkErrorToast(getContext());
             }
         });
     }

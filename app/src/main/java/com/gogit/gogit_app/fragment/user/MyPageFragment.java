@@ -19,12 +19,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.gogit.gogit_app.R;
-import com.gogit.gogit_app.adapter.OrgsAdapter;
 import com.gogit.gogit_app.adapter.PostAdapter;
 import com.gogit.gogit_app.adapter.RepoAdapter;
 import com.gogit.gogit_app.client.GithubRetrofitClient;
 import com.gogit.gogit_app.client.PostRetrofitClient;
-import com.gogit.gogit_app.config.SessionManager;
+import com.gogit.gogit_app.util.SessionManager;
 import com.gogit.gogit_app.fragment.modal.OrgModalFragment;
 import com.gogit.gogit_app.model.github.org.Organization;
 import com.gogit.gogit_app.model.github.user.GithubUser;
@@ -33,7 +32,7 @@ import com.gogit.gogit_app.model.github.repo.Repository;
 import com.gogit.gogit_app.service.GithubService;
 import com.gogit.gogit_app.service.PostService;
 import com.gogit.gogit_app.util.FragmentHelper;
-import com.gogit.gogit_app.util.MyToast;
+import com.gogit.gogit_app.util.ToastHelper;
 
 import java.util.List;
 
@@ -159,7 +158,7 @@ public class MyPageFragment extends Fragment {
 
             @Override
             public void onFailure(Call<GithubUser> call, Throwable t) {
-                MyToast.showNetworkErrorToast(getContext());
+                ToastHelper.showNetworkErrorToast(getContext());
             }
         });
     }
@@ -196,7 +195,7 @@ public class MyPageFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Organization>> call, Throwable t) {
-                MyToast.showNetworkErrorToast(getContext());
+                ToastHelper.showNetworkErrorToast(getContext());
             }
         });
     }
@@ -219,7 +218,7 @@ public class MyPageFragment extends Fragment {
 
             @Override
             public void onFailure(Call<List<Post>> call, Throwable t) {
-                MyToast.showNetworkErrorToast(getContext());
+                ToastHelper.showNetworkErrorToast(getContext());
                 Log.d("my tag", t.getMessage());
             }
         });

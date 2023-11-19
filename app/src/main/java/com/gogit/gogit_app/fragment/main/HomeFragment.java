@@ -15,11 +15,11 @@ import android.widget.EditText;
 import com.gogit.gogit_app.R;
 import com.gogit.gogit_app.adapter.PostAdapter;
 import com.gogit.gogit_app.client.PostRetrofitClient;
-import com.gogit.gogit_app.config.SessionManager;
+import com.gogit.gogit_app.util.SessionManager;
 import com.gogit.gogit_app.model.Post;
 import com.gogit.gogit_app.service.PostService;
 import com.gogit.gogit_app.util.FragmentHelper;
-import com.gogit.gogit_app.util.MyToast;
+import com.gogit.gogit_app.util.ToastHelper;
 
 import java.util.List;
 
@@ -50,7 +50,7 @@ public class HomeFragment extends Fragment {
 
             // 아무것도 검색하지 않았을 때 처리
             if (keyword.length() == 0) {
-                MyToast.showToast(getContext(), "검색어를 입력하세요.");
+                ToastHelper.showToast(getContext(), "검색어를 입력하세요.");
                 return false;
             }
 
